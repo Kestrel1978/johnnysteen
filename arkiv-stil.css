@@ -1,0 +1,567 @@
+/* Fil: arkiv-stil.css */
+
+/* GRUNNLEGGENDE STILER OG TYPOGRAFI */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap');
+
+:root {
+    --hovedfarge: #2c3e50;
+    --sekundaerfarge: #3498db;
+    --bakgrunnsfarge: #f4f6f9;
+    --tekstfarge: #34495e;
+    --hvit: #ffffff;
+    --lys-gra: #ecf0f1;
+    --kremhvit: #FAF9F6;
+}
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.7;
+    color: var(--tekstfarge);
+    background-color: var(--bakgrunnsfarge);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    color: var(--hovedfarge);
+    line-height: 1.3;
+}
+
+h1 { font-size: 3.2rem; margin: 0; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.4rem; }
+
+/* KORRIGERT: Bakgrunnen for hele tekstboksen skal være transparent */
+.tekst-innhold {
+    padding: 2rem;
+    background-color: transparent; /* Setter bakgrunnen til transparent */
+    border-radius: 8px;
+    max-width: 90%;
+}
+
+/* KORRIGERT: Kun undertittelen skal ha transparent bakgrunnsboks */
+.undertittel-boks {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.7); /* Transparent mørk bakgrunn for denne spesifikke boksen */
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+}
+
+/* LAYOUT-SEKSJONER */
+.statisk-seksjon {
+    padding: 5rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.mork-bakgrunn {
+    background-color: var(--hovedfarge);
+    color: var(--lys-gra);
+}
+.mork-bakgrunn h2, .mork-bakgrunn h3 {
+    color: var(--hvit);
+}
+
+.intro-tekst {
+    font-size: 1.2rem;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+}
+
+/* FOTER */
+footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: var(--hovedfarge);
+    color: var(--lys-gra);
+    font-size: 0.9rem;
+}
+footer p { margin: 0.2rem 0; }
+
+/* ANIMASJON */
+.skjult {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.skjult.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================= */
+/* TILLEGG FOR ARKIV-SIDEN                       */
+/* ============================================= */
+
+/* STIL FOR HERO-VIDEO SEKSJONEN ØVERST */
+.hero-video-seksjon {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Fyller hele viewport-høyden som standard */
+    min-height: 75vh; /* Minimum 75% av viewport-høyden for å sikre vertikal dekning */
+    overflow: hidden; /* Veldig viktig: Skjuler deler av videoen som går utenfor */
+    background-color: #000; /* Fallback bakgrunn hvis videoen ikke lastes */
+    display: flex; /* Bruk flexbox for sentrering av innhold */
+    align-items: center; /* Vertikal sentrering av innhold */
+    justify-content: center; /* Horisontal sentrering av innhold */
+}
+
+/* KORRIGERT: FJERNET .video-wrapper fra HTML, og satt iframe direkte. */
+/* Stil for Vimeo iframe (Den mest robuste løsningen for bakgrunn) */
+.hero-video-seksjon iframe {
+    position: absolute; /* Absolutt posisjonering i forhold til .hero-video-seksjon */
+    top: 50%; /* Sentrerer videoen vertikalt */
+    left: 50%; /* Sentrerer videoen horisontalt */
+    transform: translate(-50%, -50%); /* Justerer for perfekt sentrering */
+    
+    /* NØKKELEN TIL Å FYLLE BAKGRUNNEN UTEN SVARTE STRIPER (MED BESKJÆRING): */
+    /* Videoen må ALLTID være større enn viewporten i den dimensjonen som er "kortest" */
+    /* for at object-fit: cover skal kunne fylle hele plassen og beskjære. */
+    width: 100vw; /* Standard bredde: full viewport bredde */
+    height: 100vh; /* Standard høyde: full viewport høyde */
+
+    /* Men tving et 16:9 bildeforhold og utvid ved behov for å dekke hele bakgrunnen.
+       Dette er den "bakgrunnsvideo"-logikken som fungerer robust. */
+    /* width: calc(100vh * (16/9)); vil tvinge bredden basert på høyden i et 16:9 forhold */
+    /* height: calc(100vw * (9/16)); vil tvinge høyden basert på bredden i et 16:9 forhold */
+    /* Vi må velge den som er størst for å garantere dekning. */
+    width: max(100vw, calc(100vh * (16/9))); /* Hvis 16:9 av viewport høyden er større enn 100vw, bruk den. */
+    height: max(100vh, calc(100vw * (9/16))); /* Hvis 9:16 av viewport bredden er større enn 100vh, bruk den. */
+    
+    object-fit: cover; /* Dette tvinger beskjæring og utfylling for å fylle området */
+    
+    pointer-events: none; /* Deaktiverer interaksjon (klikk, pause) med videoen */
+    z-index: 1; /* Under overlayet */
+}
+
+/* KORRIGERT: Ingen transparent mørkning over videoen */
+.video-overlay {
+    display: none; /* Skjuler det mørke laget helt */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+    z-index: 2;
+}
+
+/* Justering for tekst-innhold i hero-seksjonen */
+.hero-video-seksjon .tekst-innhold {
+    position: relative; /* Relative fordi flexbox på forelderen sentrerer */
+    z-index: 3;
+    width: 90%;
+    max-width: 900px;
+    color: var(--hvit);
+    text-align: center;
+    line-height: 1.7;
+    background-color: transparent; /* Sørger for at hele boksen bak h1 og p er transparent */
+    padding: 2rem;
+    top: auto; 
+    left: auto;
+    transform: none;
+}
+
+.hero-video-seksjon h1 {
+    color: var(--kremhvit);
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* STIL FOR CALL-TO-ACTION KNAPPEN */
+.cta-knapp {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    background-color: var(--sekundaerfarge);
+    color: var(--hvit);
+    border-radius: 50px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.3s;
+    text-shadow: none;
+    text-decoration: none;
+}
+
+.cta-knapp:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+    color: var(--hvit);
+}
+
+/* STIL FOR PARTNERSKAP-SEKSJON ("ABOUT US") */
+.partnerskap-boks {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    background-color: var(--hvit);
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.1);
+    border: 1px solid var(--lys-gra);
+}
+
+.partnerskap-bilde-container {
+    flex-basis: 35%;
+    min-width: 250px;
+}
+
+.partnerskap-bilde {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.partnerskap-tekst-container {
+    flex-basis: 65%;
+}
+
+.partnerskap-tekst-container h2 {
+    margin-top: 0;
+}
+
+/* STIL FOR KONTAKT-SEKSJON */
+.kontakt-info {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+.kontakt-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+.kontakt-info li {
+    font-size: 1.1rem;
+    padding: 0.3rem 0;
+}
+
+/* ============================================= */
+/* STILER FOR INTERAKTIVT ARKIV                  */
+/* ============================================= */
+
+.search-container {
+    margin: 2rem 0;
+}
+#archive-search {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--sekundaerfarge);
+    background-color: var(--lys-gra);
+    color: var(--hovedfarge);
+    font-family: 'Lato', sans-serif;
+    transition: box-shadow 0.3s;
+}
+#archive-search:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+#archive-list {
+    margin-top: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.order-container {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.order-container:last-child {
+    border-bottom: none;
+}
+
+.order-header {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+.order-header:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.order-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--hvit);
+}
+.order-header .order-name-no {
+    font-size: 1rem;
+    color: var(--lys-gra);
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+.order-icon {
+    font-size: 1.5rem;
+    color: var(--sekundaerfarge);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.order-header.active .order-icon {
+    transform: rotate(45deg);
+}
+
+.order-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.family-container {
+    padding: 1rem 1.5rem 0.5rem 2.5rem;
+}
+.family-header {
+    color: var(--lys-gra);
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(52, 152, 219, 0.3);
+    margin-bottom: 1rem;
+}
+.family-header .family-name-no {
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.species-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2rem 0.75rem 2rem;
+    color: var(--lys-gra);
+    border-radius: 4px;
+    transition: background-color 0.2s, transform 0.2s;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.5s forwards;
+}
+.species-item:hover {
+    background-color: rgba(52, 152, 219, 0.2);
+    transform: translateX(5px);
+}
+.species-name-eng {
+    font-weight: bold;
+    flex: 1;
+    min-width: 0;
+}
+.species-name-sci {
+    font-style: italic;
+    color: var(--lys-gra);
+    opacity: 0.7;
+    padding: 0 1rem;
+    text-align: center;
+}
+.species-name-no {
+    font-style: normal;
+    text-align: right;
+    flex: 1;
+    min-width: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================= */
+/* STILER FOR FORESPØRSEL-FUNKSJON               */
+/* ============================================= */
+
+.species-checkbox {
+    margin-right: 1.5rem;
+    min-width: 20px;
+    height: 20px;
+    accent-color: var(--sekundaerfarge);
+    cursor: pointer;
+}
+
+#request-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    max-height: 400px;
+    background-color: var(--hvit);
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    color: var(--hovedfarge);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+#request-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#request-box h3 {
+    padding: 1rem 1.5rem;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.2rem;
+}
+#selected-species-list {
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+#selected-species-list li {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f5f5f5;
+}
+#selected-species-list li:last-child {
+    border-bottom: none;
+}
+#generate-request-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background-color: var(--sekundaerfarge);
+    color: var(--hvit);
+    font-family: 'Roboto Slab', serif;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+#generate-request-btn:hover {
+    background-color: #2980b9;
+}
+
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+#modal-overlay.hidden {
+    display: flex; /* Kept display flex here, but opacity handles visibility */
+}
+#modal-overlay:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+}
+#modal-content {
+    background: var(--hvit);
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+#modal-overlay:not(.hidden) #modal-content {
+    transform: scale(1);
+}
+#modal-content h3 {
+    margin-top: 0;
+}
+#request-textarea {
+    width: 100%;
+    height: 200px;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    resize: vertical;
+}
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+.modal-buttons button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Added transition for hover effect */
+}
+#copy-text-btn {
+    background-color: var(--sekundaerfarge);
+    color: var(--hvit);
+}
+/* Updated #send-email-btn to match #copy-text-btn */
+#send-email-btn {
+    background-color: var(--sekundaerfarge);
+    color: var(--hvit);
+}
+#close-modal-btn {
+    background-color: #ccc; /* Kept close button grey for distinction */
+    color: var(--hovedfarge);
+}
+
+/* Hover effects for modal buttons */
+#copy-text-btn:hover,
+#send-email-btn:hover {
+    background-color: #2980b9; /* Darker shade of secondary color */
+}
+
+/* RESPONSIVITET */
+@media (max-width: 768px) {
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2.2rem; }
+    .statisk-seksjon { padding: 4rem 1.5rem; }
+    .partnerskap-boks {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+    .partnerskap-tekst-container h2 {
+         margin-top: 1.5rem;
+    }
+    .species-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 1rem;
+    }
+    .species-name-sci, .species-name-no {
+        text-align: left;
+        padding: 0.1rem 0 0 0;
+    }
+}
