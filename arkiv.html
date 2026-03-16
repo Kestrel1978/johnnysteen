@@ -29,17 +29,14 @@
     <section class="statisk-seksjon">
         <div class="partnerskap-boks skjult">
             <div class="partnerskap-bilde-container">
-                <img src="media/partnership.jpg" alt="[Father's Name] and Dr. [Your Name]" class="partnerskap-bilde">
+                <img src="media/partnership.jpg" alt="Johnny Steen and Dr. Ronny Steen" class="partnerskap-bilde">
             </div>
-<div class="partnerskap-tekst-container">
-    <h2>Bridging Nature Cinematography and Science.</h2>
-    
-    <p><strong>Our Story:</strong> Johnny Steen has spent over 40 years documenting Norwegian birdlife, with his work featured in several NRK "Ut i naturen" productions. His extensive archive is the result of decades of field experience and dedication to the craft.</p>
-    
-    <p>Today, this cinematic library is paired with the scientific expertise of his son, <a href="https://www.nmbu.no/en/about/employees/ronny-steen" target="_blank">Dr. Ronny Steen</a>. As an Associate Professor in Behavioural Ecology at NMBU, Dr. Steen ensures that the footage is backed by biological accuracy and narrative depth.</p>
-    
-    <p>Together, we provide high-quality visual content where artistic documentation meets scientific insight, ensuring that every sequence is both authentic and contextually precise.</p>
-</div>
+            <div class="partnerskap-tekst-container">
+                <h2>Bridging Nature Cinematography and Science.</h2>
+                <p><strong>Our Story:</strong> Johnny Steen has spent over 40 years documenting Norwegian birdlife, with his work featured in several NRK "Ut i naturen" productions. His extensive archive is the result of decades of field experience and dedication to the craft.</p>
+                <p>Today, this cinematic library is paired with the scientific expertise of his son, <a href="https://www.nmbu.no/en/about/employees/ronny-steen" target="_blank">Dr. Ronny Steen</a>. As an Associate Professor in Behavioural Ecology at NMBU, Dr. Steen ensures that the footage is backed by biological accuracy and narrative depth.</p>
+                <p>Together, we provide high-quality visual content where artistic documentation meets scientific insight, ensuring that every sequence is both authentic and contextually precise.</p>
+            </div>
         </div>
     </section>
 
@@ -59,7 +56,7 @@
     <section class="statisk-seksjon skjult" id="contact">
         <h2 style="text-align: center;">Connect With Us</h2>
         <div class="kontakt-info" style="color: var(--tekstfarge);">
-             <p>For inquiries regarding footage licensing, scientific consultation, or collaborative projects, please contact us directly. We are available to discuss your specific production needs and provide a curated selection of footage for your review. Custom metadata and behavioral descriptions are available upon request for all licensed sequences.</p>
+             <p>For inquiries regarding footage licensing, scientific consultation, or collaborative projects, please contact us directly. We are available to discuss your specific production needs and provide a curated selection of footage for your review.</p>
              <ul style="color: var(--tekstfarge);">
                  <li><strong>Email:</strong> kestrel1978@gmail.com</li>
                  <li><strong>Location:</strong> Ås, Norway</li>
@@ -70,15 +67,14 @@
 
     <div id="request-box" class="hidden">
         <h3>Selected Species</h3>
-        <ul id="selected-species-list">
-            </ul>
+        <ul id="selected-species-list"></ul>
         <button id="generate-request-btn">Generate Request</button>
     </div>
 
     <div id="modal-overlay" class="hidden">
         <div id="modal-content">
             <h3>Copy or send your footage request</h3>
-            <p>Your request has been formatted below. You can either copy the text to your clipboard and paste it, or click 'Send Email' to open your email client with the request pre-filled to us at kestrel1978@gmail.com.</p>
+            <p>Your request has been formatted below. You can copy it or click 'Send Email'.</p>
             <textarea id="request-textarea" readonly></textarea>
             <div class="modal-buttons">
                 <button id="copy-text-btn">Copy to Clipboard</button>
@@ -89,14 +85,13 @@
     </div>
 
     <footer>
-        <p>© 2025 Steen's Avian Archive</p>
+        <p>© 2026 Steen's Avian Archive</p>
         <p>All footage and photos © Johnny Steen</p>
     </footer>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- DATA ---
     const taxonomyData = [
         { order: "WATERFOWL (Anseriformes)", order_no: "Andefugler", families: [
             { family: "Ducks, Geese, and Swans (Anatidae)", family_no: "Andefamilien", species: [
@@ -105,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ]},
         { order: "PIGEONS AND DOVES (Columbiformes)", order_no: "Duefugler", families: [
             { family: "Pigeons and Doves (Columbidae)", family_no: "Duefamilien", species: [
-                { eng: "Rock Dove", sci: "Columba livia", no: "Bydue" }, { eng: "Common Wood Pigeon", sci: "Columba palumbus", no: "Ringdue" }, { eng: "Stock Dove", sci: "Columba oenas", no: "Skogdue" }
+                { eng: "Rock Dove", sci: "Columba livia", no: "Bydue" }, { eng: "Common Wood Pigeon", sci: "Columba palumbus", no: "Ringdue" }, { eng: "Stock Dove", sci: "Columba oenas", no: "Skogdue" }, { eng: "European Turtle Dove", sci: "Streptopelia turtur", no: "Turteldue" }
             ]}
         ]},
         { order: "GREBES (Podicipediformes)", order_no: "Lappdykkerfugler", families: [
@@ -167,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ]},
         { order: "WOODPECKERS AND ALLIES (Piciformes)", order_no: "Spettefugler", families: [
             { family: "Woodpeckers (Picidae)", family_no: "Spettefamilien", species: [
-                { eng: "Lesser Spotted Woodpecker", sci: "Dryobates minor", no: "Dvergspett" }, { eng: "Great Spotted Woodpecker", sci: "Dendrocopos major", no: "Flaggspett" }, { eng: "European Green Woodpecker", sci: "Picus viridis", no: "Grønnspett" }, { eng: "Black Woodpecker", sci: "Dryocopus martius", no: "Svartspett" }, { eng: "Eurasian Wryneck", sci: "Jynx torquilla", no: "Vendehals" }
+                { eng: "Lesser Spotted Woodpecker", sci: "Dryobates minor", no: "Dvergspett" }, { eng: "Great Spotted Woodpecker", sci: "Dendrocopos major", no: "Flaggspett" }, { eng: "European Green Woodpecker", sci: "Picus viridis", no: "Grønnspett" }, { eng: "Black Woodpecker", sci: "Dryocopus martius", no: "Svartspett" }, { eng: "Eurasian Wryneck", sci: "Jynx torquilla", no: "Vendehals" }, { eng: "Eurasian Three-toed Woodpecker", sci: "Picoides tridactylus", no: "Tretåspett" }
             ]}
         ]},
         { order: "SWIFTS AND HUMMINGBIRDS (Apodiformes)", order_no: "Seilerfugler", families: [
@@ -193,13 +188,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 { eng: "Razorbill", sci: "Alca torda", no: "Alke" }, { eng: "Little Auk", sci: "Alle alle", no: "Alkekonge" }, { eng: "Common Murre", sci: "Uria aalge", no: "Lomvi" }, { eng: "Atlantic Puffin", sci: "Fratercula arctica", no: "Lunde" }, { eng: "Thick-billed Murre", sci: "Uria lomvia", no: "Polarlomvi" }, { eng: "Black Guillemot", sci: "Cepphus grylle", no: "Teist" }
             ]},
             { family: "Sandpipers and allies (Scolopacidae)", family_no: "Snipefamilien", species: [
-                { eng: "Ruff", sci: "Calidris pugnax", no: "Brushane" }, { eng: "Common Snipe", sci: "Gallinago gallinago", no: "Enkeltbekkasin" }, { eng: "Common Sandpiper", sci: "Actitis hypoleucos", no: "Strandsnipe" }, { eng: "Eurasian Curlew", sci: "Numenius arquata", no: "Storspove" }
+                { eng: "Ruff", sci: "Calidris pugnax", no: "Brushane" }, { eng: "Common Snipe", sci: "Gallinago gallinago", no: "Enkeltbekkasin" }, { eng: "Common Sandpiper", sci: "Actitis hypoleucos", no: "Strandsnipe" }, { eng: "Eurasian Curlew", sci: "Numenius arquata", no: "Storspove" }, { eng: "Black-tailed Godwit", sci: "Limosa limosa", no: "Svarthalespove" }, { eng: "Bar-tailed Godwit", sci: "Limosa lapponica", no: "Lappspove" }
             ]},
             { family: "Skuas and Jaegers (Stercorariidae)", family_no: "Joefamilien", species: [
                 { eng: "Long-tailed Jaeger", sci: "Stercorarius longicaudus", no: "Fjelljo" }, { eng: "Pomarine Jaeger", sci: "Stercorarius pomarinus", no: "Polarjo" }, { eng: "Parasitic Jaeger", sci: "Stercorarius parasiticus", no: "Tyvjo" }
             ]},
             { family: "Plovers and Lapwings (Charadriidae)", family_no: "Lofamilien", species: [
-                { eng: "Common Ringed Plover", sci: "Charadrius hiaticus", no: "Sandlo" }, { eng: "Eurasian Dotterel", sci: "Eudromias morinellus", no: "Boltit" }, { eng: "Northern Lapwing", sci: "Vanellus vanellus", no: "Vipe" }
+                { eng: "Common Ringed Plover", sci: "Charadrius hiaticus", no: "Sandlo" }, { eng: "Eurasian Dotterel", sci: "Eudromias morinellus", no: "Boltit" }, { eng: "Northern Lapwing", sci: "Vanellus vanellus", no: "Vipe" }, { eng: "Little Ringed Plover", sci: "Charadrius dubius", no: "Dverglo" }
             ]},
             { family: "Gulls, Terns, and Skimmers (Laridae)", family_no: "Måkefamilien", species: [
                 { eng: "Little Gull", sci: "Hydrocoloeus minutus", no: "Dvergmåke" }, { eng: "Common Gull", sci: "Larus canus", no: "Fiskemåke" }, { eng: "Black-headed Gull", sci: "Chroicocephalus ridibundus", no: "Hettemåke" }, { eng: "Black-legged Kittiwake", sci: "Rissa tridactyla", no: "Krykkje" }, { eng: "Common Tern", sci: "Sterna hirundo", no: "Makrellterne" }, { eng: "Lesser Black-backed Gull", sci: "Larus fuscus", no: "Sildemåke" }, { eng: "Great Black-backed Gull", sci: "Larus marinus", no: "Svartbak" }
@@ -216,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { eng: "Western Yellow Wagtail", sci: "Motacilla flava", no: "Gulerle" }, { eng: "White Wagtail", sci: "Motacilla alba", no: "Linerle" }, { eng: "Grey Wagtail", sci: "Motacilla cinerea", no: "Vintererle" }
             ]},
             { family: "Finches (Fringillidae)", family_no: "Finkefamilien", species: [
-                { eng: "Brambling", sci: "Fringilla montifringilla", no: "Bjørkefink" }, { eng: "Common Chaffinch", sci: "Fringilla coelebs", no: "Bokfink" }, { eng: "Eurasian Bullfinch", sci: "Pyrrhula pyrrhula", no: "Dompap" }, { eng: "Parrot Crossbill", sci: "Loxia pytyopsittacus", no: "Furukorsnebb" }, { eng: "Red Crossbill", sci: "Loxia curvirostra", no: "Grankorsnebb" }, { eng: "Common Redpoll", sci: "Acanthis flammea", no: "Gråsisik" }, { eng: "European Greenfinch", sci: "Chloris chloris", no: "Grønnfink" }, { eng: "Eurasian Siskin", sci: "Spinus spinus", no: "Grønnsisik" }, { eng: "Hawfinch", sci: "Coccothraustes coccothraustes", no: "Kjernebiter" }, { eng: "Pine Grosbeak", sci: "Pinicola enucleator", no: "Konglebit" }, { eng: "Common Rosefinch", sci: "Carpodacus erythrinus", no: "Rosenfink" }, { eng: "European Goldfinch", sci: "Carduelis carduelis", no: "Stillits" }
+                { eng: "Brambling", sci: "Fringilla montifringilla", no: "Bjørkefink" }, { eng: "Common Chaffinch", sci: "Fringilla coelebs", no: "Bokfink" }, { eng: "Eurasian Bullfinch", sci: "Pyrrhula pyrrhula", no: "Dompap" }, { eng: "Two-barred Crossbill", sci: "Loxia leucoptera", no: "Båndkorsnebb" }, { eng: "Parrot Crossbill", sci: "Loxia pytyopsittacus", no: "Furukorsnebb" }, { eng: "Red Crossbill", sci: "Loxia curvirostra", no: "Grankorsnebb" }, { eng: "Common Redpoll", sci: "Acanthis flammea", no: "Gråsisik" }, { eng: "European Greenfinch", sci: "Chloris chloris", no: "Grønnfink" }, { eng: "Eurasian Siskin", sci: "Spinus spinus", no: "Grønnsisik" }, { eng: "Hawfinch", sci: "Coccothraustes coccothraustes", no: "Kjernebiter" }, { eng: "Pine Grosbeak", sci: "Pinicola enucleator", no: "Konglebit" }, { eng: "Common Rosefinch", sci: "Carpodacus erythrinus", no: "Rosenfink" }, { eng: "European Goldfinch", sci: "Carduelis carduelis", no: "Stillits" }
             ]},
             { family: "Old World Flycatchers (Muscicapidae)", family_no: "Fluesnapperfamilien", species: [
                 { eng: "Bluethroat", sci: "Luscinia svecica", no: "Blåstrupe" }, { eng: "Whinchat", sci: "Saxicola rubetra", no: "Buskskvett" }, { eng: "Spotted Flycatcher", sci: "Muscicapa striata", no: "Gråfluesnapper" }, { eng: "European Robin", sci: "Erithacus rubecula", no: "Rødstrupe" }, { eng: "Northern Wheatear", sci: "Oenanthe oenanthe", no: "Steinskvett" }, { eng: "European Pied Flycatcher", sci: "Ficedula hypoleuca", no: "Svarthvit fluesnapper" }, { eng: "Black Redstart", sci: "Phoenicurus ochruros", no: "Svartrødstjert" }
@@ -243,10 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 { eng: "Horned Lark", sci: "Eremophila alpestris", no: "Fjellerke" }, { eng: "Eurasian Skylark", sci: "Alauda arvensis", no: "Sanglerke" }, { eng: "Woodlark", sci: "Lullula arborea", no: "Trelerke" }
             ]},
             { family: "Tits, Chickadees, and Titmice (Paridae)", family_no: "Meisefamilien", species: [
-                { eng: "Eurasian Blue Tit", sci: "Cyanistes caeruleus", no: "Blåmeis" }, { eng: "Great Tit", sci: "Parus major", no: "Kjøttmeis" }, { eng: "Marsh Tit", sci: "Poecile palustris", no: "Løvmeis" }, { eng: "Coal Tit", sci: "Periparus ater", no: "Svartmeis" }, { eng: "European Crested Tit", sci: "Lophophanes cristatus", no: "Toppmeis" }
+                { eng: "Eurasian Blue Tit", sci: "Cyanistes caeruleus", no: "Blåmeis" }, { eng: "Great Tit", sci: "Parus major", no: "Kjøttmeis" }, { eng: "Marsh Tit", sci: "Poecile palustris", no: "Løvmeis" }, { eng: "Siberian Tit", sci: "Poecile cinctus", no: "Lappmeis" }, { eng: "Coal Tit", sci: "Periparus ater", no: "Svartmeis" }, { eng: "European Crested Tit", sci: "Lophophanes cristatus", no: "Toppmeis" }
+            ]},
+            { family: "Penduline Tits (Remizidae)", family_no: "Pungmeisfamilien", species: [
+                { eng: "Eurasian Penduline Tit", sci: "Remiz pendulinus", no: "Pungmeis" }
             ]},
             { family: "Reed Warblers and allies (Acrocephalidae & Sylviidae)", family_no: "Sangerfamilien", species: [
-                { eng: "Common Whitethroat", sci: "Sylvia communis", no: "Tornsanger" }, { eng: "Great Reed Warbler", sci: "Acrocephalus arundinaceus", no: "Trostesanger" }
+                { eng: "Common Whitethroat", sci: "Sylvia communis", no: "Tornsanger" }, { eng: "Great Reed Warbler", sci: "Acrocephalus arundinaceus", no: "Trostesanger" }, { eng: "Eurasian Reed Warbler", sci: "Acrocephalus scirpaceus", no: "Rørsanger" }, { eng: "Eurasian Blackcap", sci: "Sylvia atricapilla", no: "Munk" }
             ]},
             { family: "Waxwings (Bombycillidae)", family_no: "Sidensvansfamilien", species: [
                 { eng: "Bohemian Waxwing", sci: "Bombycilla garrulus", no: "Sidensvans" }
@@ -295,11 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- STATE ---
     let selectedSpecies = [];
-    const recipientEmail = 'kestrel1978@gmail.com'; // Your predefined email
-    const emailSubject = 'Footage Request from Steen\'s Avian Archive'; // Predefined subject
+    const recipientEmail = 'kestrel1978@gmail.com';
+    const emailSubject = 'Footage Request from Steen\'s Avian Archive';
 
     // --- FUNKSJONER ---
-
     function updateRequestBox() {
         if (selectedSpecies.length === 0) {
             requestBox.classList.remove('visible');
@@ -325,8 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let speciesHTML = '';
                 familyData.species.forEach(species => {
                     const searchTerm = `${species.eng} ${species.no} ${species.sci}`.toLowerCase();
-                    const speciesIdentifier = species.sci;
-                    speciesHTML += `<div class="species-item" data-search="${searchTerm}"><input type="checkbox" class="species-checkbox" data-id="${speciesIdentifier}" aria-label="Select ${species.eng}"><span class="species-name-eng">${species.eng}</span><span class="species-name-sci">${species.sci}</span><span class="species-name-no">${species.no}</span></div>`;
+                    speciesHTML += `<div class="species-item" data-search="${searchTerm}"><input type="checkbox" class="species-checkbox" data-id="${species.sci}" aria-label="Select ${species.eng}"><span class="species-name-eng">${species.eng}</span><span class="species-name-sci">${species.sci}</span><span class="species-name-no">${species.no}</span></div>`;
                 });
                 familiesHTML += `<div class="family-container"><div class="family-header">${familyData.family} <span class="family-name-no">/ ${familyData.family_no}</span></div>${speciesHTML}</div>`;
             });
@@ -339,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function addEventListeners() {
         document.querySelectorAll('.order-header').forEach(header => {
             header.addEventListener('click', (e) => {
-                 if (e.target.closest('.species-checkbox')) return;
+                if (e.target.closest('.species-checkbox')) return;
                 header.classList.toggle('active');
                 const content = header.nextElementSibling;
                 content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
@@ -370,31 +366,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function generateAndShowRequest() {
         if (selectedSpecies.length === 0) return;
-        let message = "Hello,\n\n";
-        message += "We are currently working on a project and are interested in footage of the following species from your archive:\n\n";
+        let message = "Hello,\n\nWe are interested in footage of the following species:\n\n";
         selectedSpecies.forEach(species => {
             message += `- ${species.eng} (${species.sci})\n`;
         });
-        message += "\nCould you please provide us with more information on the available shots for these species, along with viewing examples?\n\n";
-        message += "Thank you,\n[Your Name / Production Company]";
+        message += "\nCould you please provide more information?\n\nThank you,\n[Your Name]";
         requestTextarea.value = message;
         modalOverlay.classList.remove('hidden');
     }
 
-    function sendEmail() {
-        const emailBody = encodeURIComponent(requestTextarea.value);
-        const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(emailSubject)}&body=${emailBody}`;
-        window.location.href = mailtoLink;
-    }
-
     // --- EVENT LISTENERS ---
-
     archiveList.addEventListener('change', (e) => {
         if (e.target.classList.contains('species-checkbox')) {
-            const checkbox = e.target;
-            const speciesId = checkbox.dataset.id;
-
-            if (checkbox.checked) {
+            const speciesId = e.target.dataset.id;
+            if (e.target.checked) {
                 for (const order of taxonomyData) {
                     for (const family of order.families) {
                         const found = family.species.find(s => s.sci === speciesId);
@@ -413,46 +398,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     generateBtn.addEventListener('click', generateAndShowRequest);
     searchInput.addEventListener('input', handleSearch);
-
     closeModalBtn.addEventListener('click', () => modalOverlay.classList.add('hidden'));
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            modalOverlay.classList.add('hidden');
-        }
-    });
-
     copyBtn.addEventListener('click', () => {
         requestTextarea.select();
-        navigator.clipboard.writeText(requestTextarea.value).then(() => {
-            copyBtn.textContent = 'Copied!';
-            setTimeout(() => { copyBtn.textContent = 'Copy to Clipboard'; }, 2000);
-        }).catch(err => {
-            console.error('Copy failed', err);
-            try {
-                document.execCommand('copy');
-                copyBtn.textContent = 'Copied! (fallback)';
-                setTimeout(() => { copyBtn.textContent = 'Copy to Clipboard'; }, 2000);
-            } catch (execErr) {
-                console.error('Fallback copy failed', execErr);
-            }
-        });
+        document.execCommand('copy');
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => copyBtn.textContent = 'Copy to Clipboard', 2000);
+    });
+    sendEmailBtn.addEventListener('click', () => {
+        window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(requestTextarea.value)}`;
     });
 
-    sendEmailBtn.addEventListener('click', sendEmail);
-
-    // --- INITIALISERING ---
     generateList(taxonomyData);
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('visible');
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.statisk-seksjon.skjult').forEach(el => observer.observe(el));
-    document.querySelectorAll('.partnerskap-boks.skjult').forEach(el => observer.observe(el));
+    document.querySelectorAll('.statisk-seksjon.skjult, .partnerskap-boks.skjult').forEach(el => observer.observe(el));
 });
 </script>
 
